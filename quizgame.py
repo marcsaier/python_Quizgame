@@ -20,6 +20,7 @@ def new_game():
     first_question = questions[list(questions.keys())[0]]
     print("Frage: " + list(questions.keys())[0])
     print("Antwortmöglichkeiten: " + str(first_question["answers"]))
+    
 
 def check_answer():
     pass

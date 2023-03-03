@@ -13,8 +13,13 @@ def insert_questions():
                "D: "+input("D =:")]
     questions[question] = {"correct_answer": correct_answer, "answers": answers}
 
+#Diese Methode soll abgerufen werden sobald das Quiz startet und Soll dem Nutzer das Quiz stellen
 def new_game():
-    pass
+    print("WILLKOMMEN ZUM GROßEN QUIZ!")
+    print("-------------------------------------")
+    first_question = questions[list(questions.keys())[0]]
+    print("Frage: " + list(questions.keys())[0])
+    print("Antwortmöglichkeiten: " + str(first_question["answers"]))
 
 def check_answer():
     pass

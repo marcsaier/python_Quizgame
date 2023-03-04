@@ -1,5 +1,5 @@
 #a simple quiz game designed by me :)
-
+import json
 #Globale Variablen
 questions = {}
 
@@ -20,15 +20,18 @@ def create_quiz():
     number_of_questions = input("Wie viele Fragen soll dein Quiz haben? :")
     for i in range(number_of_questions):
         insert_question()
-    anotherone = input("Bist du fertig mit deinem Quiz oder möchtest du noch eine Frage hinzufügen?(Y/N) :").lower()
-    if anotherone == "y":
+    anotherone = input("Möchtest du noch eine Frage hinzufügen?(Y/N) :").lower()
+    while anotherone == "y":
         insert_question()
-    elif anotherone == "n":
-        pass
-        #scheibt quiz in datei und leitet zurück zum hauptmenü
+        anotherone = input("Möchtest du noch eine Frage hinzufügen?(Y/N) :").lower()
+    while anotherone == "n":
+        #überprüfen ob schon ein quiz mit dem namen existiert???
+        with open(quiz_name+".json", "w+") as f:
+            json.dump(questions, f)
+        print("Dein Quiz wurde erstellt!")
     else:
-        print("Ungültige Eingabe, versuche es erneut, Y = Ja, N = Nein :")
-
+        input("Ungültige Eingabe, versuche es erneut, Y = Ja, N = Nein :").lower()
+        #hier muss noch ne möglichkeit her um zurück nach oben zu kommen, anderen loop/vlt cases verwenden
 
 #Diese Methode soll abgerufen werden sobald das Quiz startet und Soll dem Nutzer das Quiz stellen
 def new_game():

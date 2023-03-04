@@ -1,6 +1,6 @@
 #Hier werden Dinge ausprobiert...
 #Optimal bin ich leer...
-
+import json
 questions = {}
 
 def insert_questions():
@@ -12,9 +12,23 @@ def insert_questions():
                "D: "+input("D =:")]
     questions[question] = {"correct_answer": correct_answer, "answers": answers}
 
-insert_questions()
-insert_questions()
 
-first_question = questions[list(questions.keys())[0]]
-print("Frage: " + list(questions.keys())[0])
-print("Antwortmöglichkeiten: " + str(first_question["answers"]))
+#first_question = questions[list(questions.keys())[0]]
+#print("Frage: " + list(questions.keys())[0])
+#print("Antwortmöglichkeiten: " + str(first_question["answers"]))
+
+def create_quiz():
+    print("Willkommen bei der Quizerstellung!")
+    quiz_name = input("Wie soll dein Quiz heißen? :")
+    number_of_questions = int(input("Wie viele Fragen soll dein Quiz haben? :"))
+    for i in range(number_of_questions):
+        insert_questions()
+    anotherone = input("Bist du fertig mit deinem Quiz oder möchtest du noch eine Frage hinzufügen?(Y/N) :").lower()
+    if anotherone == "y":
+        insert_questions()
+    elif anotherone == "n":
+        #überprüfen ob schon ein quiz mit dem namen existiert???
+        with open(quiz_name+".json", "w+") as f:
+            json.dump(questions, f)
+
+create_quiz()

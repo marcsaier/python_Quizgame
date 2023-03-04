@@ -20,18 +20,24 @@ def create_quiz():
     number_of_questions = input("Wie viele Fragen soll dein Quiz haben? :")
     for i in range(number_of_questions):
         insert_question()
-    anotherone = input("Möchtest du noch eine Frage hinzufügen?(Y/N) :").lower()
-    while anotherone == "y":
-        insert_question()
+    while True:    
         anotherone = input("Möchtest du noch eine Frage hinzufügen?(Y/N) :").lower()
-    while anotherone == "n":
-        #überprüfen ob schon ein quiz mit dem namen existiert???
-        with open(quiz_name+".json", "w+") as f:
-            json.dump(questions, f)
-        print("Dein Quiz wurde erstellt!")
-    else:
-        input("Ungültige Eingabe, versuche es erneut, Y = Ja, N = Nein :").lower()
-        #hier muss noch ne möglichkeit her um zurück nach oben zu kommen, anderen loop/vlt cases verwenden
+        if anotherone == "y":
+            while True:
+                insert_question()
+                anotherone = input("Möchtest du noch eine Frage hinzufügen?(Y/N) :").lower()
+                if  anotherone == "n":
+                    break
+                elif anotherone != "y" or anotherone != "n":
+                    anotherone = input("Ungültige Eingabe, versuche es erneut, Y = Ja, N = Nein :").lower()
+            break
+        elif anotherone == "n":
+            break
+        else:
+            anotherone = input("Ungültige Eingabe, versuche es erneut, Y = Ja, N = Nein :").lower()
+    with open(quiz_name+".json", "w+") as f:
+        json.dump(questions, f)
+    print("Dein Quiz wurde erstellt!")
 
 #Diese Methode soll abgerufen werden sobald das Quiz startet und Soll dem Nutzer das Quiz stellen
 def new_game():

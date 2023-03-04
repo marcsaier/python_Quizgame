@@ -17,6 +17,9 @@ def insert_question():
 def create_quiz():
     print("Willkommen bei der Quizerstellung!")
     quiz_name = input("Wie soll dein Quiz heißen? :")
+    #abfrage ob es schon ein quiz mit dem namen gibt
+    #
+    #
     number_of_questions = input("Wie viele Fragen soll dein Quiz haben? :")
     for i in range(number_of_questions):
         insert_question()

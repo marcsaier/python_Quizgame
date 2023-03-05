@@ -89,6 +89,7 @@ def play_quiz():
     print("Du hast alle Fragen beantworet!")
     print(f"Dein Ergebniss: {score}/{num_questions}")
 
+#Diese Methode fügt das Hauptmenü ein von dem aus man Quizzes spielen und erstellen kann
 def main_menu():
     while True:
         print("----------Hauptmenü----------\n1.Neues Quiz erstellen\n2.Erstellte Quizes Spielen\n3.Spiel Verlassen")

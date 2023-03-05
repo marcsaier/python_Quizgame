@@ -17,8 +17,8 @@ def insert_question():
 #Diese Methode soll den Nutzer ein Quiz erstellen lassen
 def create_quiz():
     print("Willkommen bei der Quizerstellung!")
-    quiz_name = input("Wie soll dein Quiz heißen? :")
-    while os.path.exists("/saved_quiz/",quiz_name+".json"):
+    quiz_name = str(input("Wie soll dein Quiz heißen? :"))
+    while os.path.exists("saved_quiz/"+quiz_name+".json"):
         quiz_name = input("Es existiert bereits ein Quiz mit diesem Namen!\nBitte Lege einen neuen fest: ")
     number_of_questions = int(input("Wie viele Fragen soll dein Quiz haben? :"))    #Was passiert wenn keine Zahl angeben wird???
     for i in range(number_of_questions):
@@ -32,15 +32,17 @@ def create_quiz():
                 if  anotherone == "n":
                     break
                 elif anotherone != "y" or anotherone != "n":
-                    anotherone = input("Ungültige Eingabe, versuche es erneut, Y = Ja, N = Nein :").lower()
+                    anotherone = input("Ungültige Eingabe, versuche es erneut, Y = Ja, N = Nein :").lower() #BUG: n funktioniert hier nicht
             break
         elif anotherone == "n":
             break
         else:
             anotherone = input("Ungültige Eingabe, versuche es erneut, Y = Ja, N = Nein :").lower()
-    with open(quiz_name+".json", "w+") as f:
+    if not os.path.exists("saved_quiz"):
+        os.makedirs("saved_quiz")
+    with open("saved_quiz/"+quiz_name+".json", "w+") as f:
         json.dump(questions, f)
-    print("Dein Quiz wurde erstellt!")
+    print("Dein Quiz wurde erstellt!\nDu kommst zurück zum Hauptmenü...")
 
 #Diese Methode soll abgerufen werden sobald das Quiz startet und Soll dem Nutzer das Quiz stellen
 def new_game():
@@ -61,15 +63,17 @@ def play_again():
     pass
 
 def main_menu():
-    print("----------Hauptmenü----------\n1.Neues Quiz erstellen\n2.Erstellte Quizes Spielen\n3.Spiel Verlassen")
-    choose_mode = input("Auswahl :")
     while True:
+        print("----------Hauptmenü----------\n1.Neues Quiz erstellen\n2.Erstellte Quizes Spielen\n3.Spiel Verlassen")
+        choose_mode = input("Auswahl :")
         match(choose_mode):
             case "1":
-                pass
+                create_quiz()
             case "2":
                 pass
             case "3":
-                pass
+                break
             case _:
-                print("error")
+                choose_mode = input("Ungültige Eingabe, bitte Antworten sie nur mit 1, 2 oder 3! :")
+
+main_menu()

@@ -67,23 +67,28 @@ def load_quiz():
 
 #Diese Methode soll dem Nutzer das Quiz stellen
 def play_quiz():
-    print("WILLKOMMEN ZUM GROßEN QUIZ!")
+    print("WÄHLE DAS QUIZ DAS DU SPIELEN MÖCHTEST")
     print("-------------------------------------")
     questions = load_quiz()
     print("Los Geht's")
-    first_question = questions[list(questions.keys())[0]]
-    print("Frage: " + list(questions.keys())[0])
-    print("Antwortmöglichkeiten: " + str(first_question["answers"]))
-
-def check_answer():
-    pass
-
-def display_score():
-    pass
-
-def play_again():
-    pass
-
+    sore = 0
+    num_questions = len(questions)
+    for i, question in enumerate(questions.values()):
+        print(f"\nFrage {i+1}/{num_questions}: {list(questions.keys())[i]}")
+        print("Antwortmöglichkeiten: ")
+        for answer in question["answers"]:
+            print(answer)
+        user_answer = input("Wie Lautet die richtige Antwort? (A, B, C oder D?) : ")
+        if user_answer == question["correct_answer"]:
+            print("Richtig")
+            score += 1
+        else:
+            print("Falsch!")
+            print("Die richtige Antwort wäre: "+question["correct_answer"])
+        print("---------------------------------")
+    print("Du hast alle Fragen beantworet!")
+    print(f"Dein Ergebniss: {score}/{num_questions}")
+    
 def main_menu():
     while True:
         print("----------Hauptmenü----------\n1.Neues Quiz erstellen\n2.Erstellte Quizes Spielen\n3.Spiel Verlassen")

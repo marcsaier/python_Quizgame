@@ -44,14 +44,35 @@ def create_quiz():
         json.dump(questions, f)
     print("Dein Quiz wurde erstellt!\nDu kommst zurück zum Hauptmenü...")
 
-#Diese Methode soll abgerufen werden sobald das Quiz startet und Soll dem Nutzer das Quiz stellen
-def new_game():
+#Diese Methode soll das entsprechende Quiz aus der .json Datei in das Dictionary laden
+def load_quiz():
+    questions = {}
+    quiz_path = "saved_quiz"
+    quizzes = os.listdir(quiz_path)
+    quizzes_names = [os.path.splitext(file)[0] for file in quizzes]
+    if quizzes_names == []:
+        print("Es gibt leider kein gespeichertes Quiz für dich :(\nBitte erstelle ein Quiz")
+        main_menu()
+    for i in quizzes_names:
+        print(i+": "+quizzes_names[i])
+    user_choice = int(input("Bitte wähle das Quiz aus, dass du spielen möchtest : "))
+    try:
+        with open(quizzes_names[user_choice]+".json") as f:
+            questions = json.load(f)
+    except FileNotFoundError:
+        print("Leider konnte das Quiz nicht geladen werden :( (File not found)")
+    except json.JSONDecodeError:
+        print("Leider konnte das Quiz nicht geladen werden :( (json.JSONDecodeError)")
+
+#Diese Methode soll dem Nutzer das Quiz stellen
+def play_quiz():
     print("WILLKOMMEN ZUM GROßEN QUIZ!")
     print("-------------------------------------")
+    load_quiz()
+    print("Los Geht's")
     first_question = questions[list(questions.keys())[0]]
     print("Frage: " + list(questions.keys())[0])
     print("Antwortmöglichkeiten: " + str(first_question["answers"]))
-
 
 def check_answer():
     pass
@@ -70,7 +91,7 @@ def main_menu():
             case "1":
                 create_quiz()
             case "2":
-                pass
+                play_quiz()
             case "3":
                 break
             case _:

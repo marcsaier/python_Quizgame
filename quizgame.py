@@ -1,5 +1,6 @@
 #a simple quiz game designed by me :)
 import json
+import os
 #Globale Variablen
 questions = {}
 
@@ -17,10 +18,9 @@ def insert_question():
 def create_quiz():
     print("Willkommen bei der Quizerstellung!")
     quiz_name = input("Wie soll dein Quiz heißen? :")
-    #abfrage ob es schon ein quiz mit dem namen gibt
-    #
-    #
-    number_of_questions = input("Wie viele Fragen soll dein Quiz haben? :")
+    while os.path.exists("/saved_quiz/",quiz_name+".json"):
+        quiz_name = input("Es existiert bereits ein Quiz mit diesem Namen!\nBitte Lege einen neuen fest: ")
+    number_of_questions = int(input("Wie viele Fragen soll dein Quiz haben? :"))    #Was passiert wenn keine Zahl angeben wird???
     for i in range(number_of_questions):
         insert_question()
     while True:    
@@ -59,3 +59,7 @@ def display_score():
 
 def play_again():
     pass
+
+def main_menu():
+    print("Hauptmenü")
+    #3 optionen 1.Quiz erstellen 2.Quiz spielen 3.Quit

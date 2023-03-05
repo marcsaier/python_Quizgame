@@ -61,5 +61,15 @@ def play_again():
     pass
 
 def main_menu():
-    print("Hauptmenü")
-    #3 optionen 1.Quiz erstellen 2.Quiz spielen 3.Quit
+    print("----------Hauptmenü----------\n1.Neues Quiz erstellen\n2.Erstellte Quizes Spielen\n3.Spiel Verlassen")
+    choose_mode = input("Auswahl :")
+    while True:
+        match(choose_mode):
+            case "1":
+                pass
+            case "2":
+                pass
+            case "3":
+                pass
+            case _:
+                print("error")

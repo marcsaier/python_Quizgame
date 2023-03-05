@@ -1,1 +1,2 @@
-python  quizgame.py
+py  quizgame.py
+pause

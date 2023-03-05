@@ -53,22 +53,23 @@ def load_quiz():
     if quizzes_names == []:
         print("Es gibt leider kein gespeichertes Quiz für dich :(\nBitte erstelle ein Quiz")
         main_menu()
-    for i in quizzes_names:
-        print(i+": "+quizzes_names[i])
+    for i in range(len(quizzes_names)):
+        print(str(i)+": "+quizzes_names[i])
     user_choice = int(input("Bitte wähle das Quiz aus, dass du spielen möchtest : "))
     try:
-        with open(quizzes_names[user_choice]+".json") as f:
+        with open(os.path.join(quiz_path, quizzes_names[user_choice]+".json")) as f:
             questions = json.load(f)
     except FileNotFoundError:
         print("Leider konnte das Quiz nicht geladen werden :( (File not found)")
     except json.JSONDecodeError:
         print("Leider konnte das Quiz nicht geladen werden :( (json.JSONDecodeError)")
+    return questions
 
 #Diese Methode soll dem Nutzer das Quiz stellen
 def play_quiz():
     print("WILLKOMMEN ZUM GROßEN QUIZ!")
     print("-------------------------------------")
-    load_quiz()
+    questions = load_quiz()
     print("Los Geht's")
     first_question = questions[list(questions.keys())[0]]
     print("Frage: " + list(questions.keys())[0])

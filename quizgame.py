@@ -19,12 +19,12 @@ def create_quiz():
     print("Willkommen bei der Quizerstellung!")
     quiz_name = str(input("Wie soll dein Quiz heißen? :"))
     while os.path.exists("saved_quiz/"+quiz_name+".json"):
-        quiz_name = input("Es existiert bereits ein Quiz mit diesem Namen!\nBitte Lege einen neuen fest: ")
+        quiz_name = input("Es existiert bereits ein Quiz mit diesem Namen!\nBitte Lege einen neuen Namen fest: ")
     number_of_questions = int(input("Wie viele Fragen soll dein Quiz haben? :"))    #Was passiert wenn keine Zahl angeben wird???
     for i in range(number_of_questions):
         insert_question()
+    anotherone = input("Möchtest du noch eine Frage hinzufügen?(Y/N) :").lower()
     while True:    
-        anotherone = input("Möchtest du noch eine Frage hinzufügen?(Y/N) :").lower()
         if anotherone == "y":
             while True:
                 insert_question()
@@ -32,8 +32,7 @@ def create_quiz():
                 if  anotherone == "n":
                     break
                 elif anotherone != "y" or anotherone != "n":
-                    anotherone = input("Ungültige Eingabe, versuche es erneut, Y = Ja, N = Nein :").lower() #BUG: n funktioniert hier nicht
-            break
+                    anotherone = input("Ungültige Eingabe, versuche es erneut, Y = Ja, N = Nein :").lower()
         elif anotherone == "n":
             break
         else:

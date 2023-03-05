@@ -71,7 +71,7 @@ def play_quiz():
     print("-------------------------------------")
     questions = load_quiz()
     print("Los Geht's")
-    sore = 0
+    score = 0
     num_questions = len(questions)
     for i, question in enumerate(questions.values()):
         print(f"\nFrage {i+1}/{num_questions}: {list(questions.keys())[i]}")
@@ -88,7 +88,7 @@ def play_quiz():
         print("---------------------------------")
     print("Du hast alle Fragen beantworet!")
     print(f"Dein Ergebniss: {score}/{num_questions}")
-    
+
 def main_menu():
     while True:
         print("----------Hauptmenü----------\n1.Neues Quiz erstellen\n2.Erstellte Quizes Spielen\n3.Spiel Verlassen")

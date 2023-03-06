@@ -11,7 +11,7 @@ def insert_question():
     correct_answer = input("Wie ist die korrekte Antwort für die Frage? :").lower()
     while True:
         if correct_answer !="a" and correct_answer !="b" and correct_answer !="c" and correct_answer !="d":
-            print("Die korrekte Antwort muss einer der möglichkeiten A, B, C oder D entsprechen")
+            print("Die korrekte Antwort muss einer der Möglichkeiten A, B, C oder D entsprechen")
             correct_answer = input("Wie ist die korrekte Antwort für die Frage? :").lower()
         else:
             break
@@ -110,7 +110,7 @@ def play_quiz():
         user_answer = input("Wie Lautet die richtige Antwort? (A, B, C oder D?) : ").lower()
         while True:
             if user_answer !="a" and user_answer !="b" and user_answer !="c" and user_answer !="d":
-                print("Die korrekte Antwort muss einer der möglichkeiten A, B, C oder D entsprechen")
+                print("Die korrekte Antwort muss einer der Möglichkeiten A, B, C oder D entsprechen")
                 user_answer = input("Wie Lautet die richtige Antwort? (A, B, C oder D?) : ").lower()
             else:
                 break

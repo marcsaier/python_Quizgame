@@ -1,6 +1,7 @@
 #a simple quiz game designed by me :)
 import json
 import os
+
 #Globale Variablen
 questions = {}
 
@@ -81,6 +82,9 @@ def delete_quiz():
     try:
         os.remove(os.path.join(quiz_path, quizzes_names[user_choice] + ".json"))
         print("Quiz erfolgreich gelöscht!")
+    except IndexError:
+        print("Ungültige Eingabe (Index Error)")
+        delete_quiz()
     except FileNotFoundError:
         print("Leider konnte das Quiz nicht gefunden werden :( (File not found)")
 

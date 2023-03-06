@@ -53,7 +53,7 @@ def load_quiz():
         print("Es gibt leider kein gespeichertes Quiz für dich :(\nBitte erstelle ein Quiz")
         main_menu()
     for i in range(len(quizzes_names)):
-        print(str(i)+": "+quizzes_names[i])
+        print("["+str(i)+"]"+": "+quizzes_names[i])
     user_choice = int(input("Bitte wähle das Quiz aus, dass du spielen möchtest : "))
     try:
         with open(os.path.join(quiz_path, quizzes_names[user_choice]+".json")) as f:
@@ -63,6 +63,17 @@ def load_quiz():
     except json.JSONDecodeError:
         print("Leider konnte das Quiz nicht geladen werden :( (json.JSONDecodeError)")
     return questions
+
+def delete_quiz():
+    quiz_path = "saved_quiz"
+    quizzes = os.listdir(quiz_path)
+    quizzes_names = [os.path.splitext(file)[0] for file in quizzes]
+    if quizzes_names == []:
+        print("Es gibt leider kein gespeichertes Quiz für dich :(\nBitte erstelle ein Quiz")
+        main_menu()
+    for i in range(len(quizzes_names)):
+        print("["+str(i)+"]"+": "+quizzes_names[i])
+    user_choice = int(input("Bitte wähle das Quiz aus, dass du löschen möchtest : "))
 
 #Diese Methode soll dem Nutzer das Quiz stellen
 def play_quiz():

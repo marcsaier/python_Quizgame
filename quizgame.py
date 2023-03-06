@@ -107,7 +107,13 @@ def play_quiz():
         print("Antwortmöglichkeiten: ")
         for answer in question["answers"]:
             print(answer)
-        user_answer = input("Wie Lautet die richtige Antwort? (A, B, C oder D?) : ")
+        user_answer = input("Wie Lautet die richtige Antwort? (A, B, C oder D?) : ").lower()
+        while True:
+            if user_answer !="a" and user_answer !="b" and user_answer !="c" and user_answer !="d":
+                print("Die korrekte Antwort muss einer der möglichkeiten A, B, C oder D entsprechen")
+                user_answer = input("Wie Lautet die richtige Antwort? (A, B, C oder D?) : ").lower()
+            else:
+                break
         if user_answer == question["correct_answer"]:
             print("Richtig")
             score += 1

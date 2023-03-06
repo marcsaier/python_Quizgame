@@ -8,7 +8,7 @@ questions = {}
 #Eine Methode die, die Fragen und Antwortmöglichkeiten für unser Quiz definiert
 def insert_question():
     question = input("Wie lautet die Frage? :")
-    correct_answer = input("Wie ist die korrekte Antwort für die Frage? :").lower()
+    correct_answer = input("Welche Antwortmöglichkeit ist richtig A, B, C oder D:").lower()
     while True:
         if correct_answer !="a" and correct_answer !="b" and correct_answer !="c" and correct_answer !="d":
             print("Die korrekte Antwort muss einer der Möglichkeiten A, B, C oder D entsprechen")
@@ -139,6 +139,6 @@ def main_menu():
             case "4":
                 break
             case _:
-                choose_mode = input("Ungültige Eingabe, bitte Antworten sie nur mit 1, 2 oder 3! :")
+                choose_mode = input("Ungültige Eingabe, bitte Antworten sie nur mit 1, 2, 3 oder 4! :")
 
 main_menu()

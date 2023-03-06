@@ -64,16 +64,22 @@ def load_quiz():
         print("Leider konnte das Quiz nicht geladen werden :( (json.JSONDecodeError)")
     return questions
 
+#Diese Methode soll den Nutzer Quizzes löschen lassen
 def delete_quiz():
     quiz_path = "saved_quiz"
     quizzes = os.listdir(quiz_path)
     quizzes_names = [os.path.splitext(file)[0] for file in quizzes]
     if quizzes_names == []:
-        print("Es gibt leider kein gespeichertes Quiz für dich :(\nBitte erstelle ein Quiz")
+        print("Es gibt derzeit keine gespeicherten Quizzes :(\nDu kannst Quizzes im Hauptmenü erstellen")
         main_menu()
     for i in range(len(quizzes_names)):
         print("["+str(i)+"]"+": "+quizzes_names[i])
     user_choice = int(input("Bitte wähle das Quiz aus, dass du löschen möchtest : "))
+    try:
+        with open(os.path.join(quiz_path, quizzes_names[user_choice]+".json")) as f:
+            os.remove(f)
+    except FileNotFoundError:
+        print("Leider konnte das Quiz nicht gefunden werden :( (File not found)")
 
 #Diese Methode soll dem Nutzer das Quiz stellen
 def play_quiz():
@@ -102,7 +108,7 @@ def play_quiz():
 #Diese Methode fügt das Hauptmenü ein von dem aus man Quizzes spielen und erstellen kann
 def main_menu():
     while True:
-        print("----------Hauptmenü----------\n1.Neues Quiz erstellen\n2.Erstellte Quizes Spielen\n3.Spiel Verlassen")
+        print("----------Hauptmenü----------\n1.Neues Quiz erstellen\n2.Erstellte Quizes Spielen\n3.Quiz Löschen\n4.Spiel Verlassen")
         choose_mode = input("Auswahl :")
         match(choose_mode):
             case "1":
@@ -110,6 +116,8 @@ def main_menu():
             case "2":
                 play_quiz()
             case "3":
+                delete_quiz()
+            case "4":
                 break
             case _:
                 choose_mode = input("Ungültige Eingabe, bitte Antworten sie nur mit 1, 2 oder 3! :")

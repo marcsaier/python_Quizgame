@@ -127,7 +127,7 @@ def play_quiz():
 #Diese Methode fügt das Hauptmenü ein von dem aus man Quizzes spielen und erstellen kann
 def main_menu():
     while True:
-        print("----------Hauptmenü----------\n1.Neues Quiz erstellen\n2.Erstellte Quizes Spielen\n3.Quiz Löschen\n4.Spiel Verlassen")
+        print("----------Hauptmenü----------\n1.Neues Quiz erstellen\n2.Erstellte Quizzes Spielen\n3.Quiz Löschen\n4.Spiel Verlassen")
         choose_mode = input("Auswahl :")
         match(choose_mode):
             case "1":

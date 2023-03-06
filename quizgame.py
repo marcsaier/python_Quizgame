@@ -58,6 +58,9 @@ def load_quiz():
     try:
         with open(os.path.join(quiz_path, quizzes_names[user_choice]+".json")) as f:
             questions = json.load(f)
+    except IndexError:
+        print("Ungültige Eingabe (Index Error)")
+        load_quiz()
     except FileNotFoundError:
         print("Leider konnte das Quiz nicht geladen werden :( (File not found)")
     except json.JSONDecodeError:
@@ -76,8 +79,8 @@ def delete_quiz():
         print("["+str(i)+"]"+": "+quizzes_names[i])
     user_choice = int(input("Bitte wähle das Quiz aus, dass du löschen möchtest : "))
     try:
-        with open(os.path.join(quiz_path, quizzes_names[user_choice]+".json")) as f:
-            os.remove(f)
+        os.remove(os.path.join(quiz_path, quizzes_names[user_choice] + ".json"))
+        print("Quiz erfolgreich gelöscht!")
     except FileNotFoundError:
         print("Leider konnte das Quiz nicht gefunden werden :( (File not found)")
 
